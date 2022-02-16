@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8"/>
+    <title>setTimeout() 和 clearTimeout() 方法</title>
+  </head>
+  <body>
+    <p>Live Example</p>
+    <button onclick="delayAlert();">Show an alert box after two seconds</button><br/><br/>
+    <button onclick="clearAlert();">Cancel alert before it happens</button>
+    <!-- 脚本 -->
+    <script type="text/javascript">
+      let timeoutID;
+
+      const delayAlert = () => {
+        timeoutID = window.setTimeout(slowAlert, 2000);
+      }
+
+      const slowAlert = () => {
+        alert('That was really slow!');
+      }
+
+      const clearAlert = () => {
+        window.clearTimeout(timeoutID);
+      }
+    </script>
+  </body>
+</html>

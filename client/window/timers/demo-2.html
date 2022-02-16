@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <meta charset="UTF-8"/>
+    <title>电子时钟</title>
+    <style>
+      #Clock {
+        font-size: xxx-large;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="Clock">
+      <span id="Year"></span> 年
+      <span id="Month"></span> 月
+      <span id="Day"></span> 日
+      <span id="Hour"></span>:<span id="Minute"></span>:<span id="Second"></span>
+      <span id="Week"></span>
+    </div>
+    <!-- js -->
+    <script type="text/javascript">
+      const
+        Year = document.getElementById("Year"),
+        Month = document.getElementById("Month"),
+        Day = document.getElementById("Day"),
+        Hour = document.getElementById("Hour"),
+        Minute = document.getElementById("Minute"),
+        Second = document.getElementById("Second"),
+        Week = document.getElementById("Week");
+
+      const updateTime = () => {
+        let date = new Date();
+        Year.textContent = date.getFullYear().toString();
+        let month = date.getMonth() + 1;
+        Month.textContent = month >= 10 ? month.toString() : ("0" + month);
+        Day.textContent = date.getDate().toString();
+        Hour.textContent = date.getHours().toString();
+        Minute.textContent = date.getMinutes().toString();
+        let second = date.getSeconds();
+        Second.textContent = second >= 10 ? second.toString() : "0" + second;
+        let week = ["日", "一", "二", "三", "四", "五", "六"];
+        Week.textContent = week[date.getDay()];
+      }
+
+      updateTime();
+
+      window.setInterval(updateTime, 1000);
+    </script>
+  </body>
+</html>

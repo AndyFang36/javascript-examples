@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <meta charset="UTF-8"/>
+    <title>js数组基础</title>
+  </head>
+  <body>
+    <script type="text/javascript">
+      // 创建数组
+      let fruits = ['Apple', 'Banana'];
+      console.log(fruits);
+      console.log(fruits.length);
+
+      // 通过索引访问数组元素
+      let first = fruits[0];
+      let last = fruits[fruits.length - 1];
+      console.log(first);
+      console.log(last);
+
+      // 遍历数组
+      fruits.forEach((item, index, array) => {
+        console.log(item, index);
+      });
+
+      // 添加元素到数组的末尾
+      let newFruits = fruits.push('Orange');
+      console.log(newFruits);
+
+      // 删除数组末尾的元素
+      let lastDel = fruits.pop();
+      console.log(lastDel);
+      console.log(fruits.length);
+
+      // 删除数组头部元素
+      let firstDel = fruits.shift();
+      console.log(firstDel);
+      console.log(fruits.length);
+
+      //添加元素到数组的头部
+      let newLength = fruits.unshift('Strawberry');
+      fruits.forEach((item, index, array) => {
+        console.log(item, index);
+      });
+
+      // 找出某个元素在数组中的索引
+      fruits.push('Mango');
+      let position = fruits.indexOf('Banana');
+      console.log("Banana的位置：" + position);
+
+      // 通过索引删除某个元素
+      let removedItem = fruits.splice(position, 1);
+      fruits.forEach((item, index, array) => {
+        console.log(item, index);
+      });
+
+      // 从一个索引位置删除多个元素
+      let vegetables = ['Cabbage', 'Turnip', 'Radish', 'Carrot'];
+      console.log(vegetables);
+      let removedItems = vegetables.splice(1, 2);
+      console.log(vegetables);
+      console.log(removedItems);
+
+      // 复制一个数组
+      let shallowCopy = fruits.slice();
+      console.log(shallowCopy);
+    </script>
+  </body>
+</html>

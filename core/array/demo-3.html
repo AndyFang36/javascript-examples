@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8"/>
+    <title>数组长度与数字下标之间的关系</title>
+  </head>
+  <body>
+    <script type="text/javascript">
+      const fruits = [];
+      fruits.push('banana', 'apple', 'peach');
+      console.log(fruits.length);
+
+      // 使用一个合法的下标为数组元素赋值，并且该下标超出了当前数组的大小的时候，解释器会同时修改 length 的值:
+      fruits[5] = 'mango';
+      console.log(fruits[5]);
+      console.log(fruits.length);
+      console.log(Object.keys(fruits));
+      console.log("----------------------------------");
+
+      // 也可以显式地给 length 赋一个更大的值：
+      fruits.length = 10;
+      console.log(fruits);
+      console.log(fruits[8]);
+      console.log(fruits.length);
+      console.log(Object.keys(fruits));
+      console.log("----------------------------------");
+
+      // 而为 length 赋一个更小的值则会删掉一部分元素：
+      fruits.length = 2;
+      console.log(fruits);
+      console.log(Object.keys(fruits));
+
+      // 正则匹配
+      const myRe = /d(b+)(d)/i;
+      const myArray = myRe.exec('cdbBdbsbz');
+      console.log(myArray);
+    </script>
+  </body>
+</html>

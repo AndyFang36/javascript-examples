@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <meta charset="UTF-8"/>
+    <title>访问数组元素</title>
+  </head>
+  <body>
+    <script type="text/javascript">
+      // JavaScript 数组的第一个元素的索引为0，最后一个元素的索引等于该数组的长度减1。
+      let arr = [
+        'this is the first element',
+        'this is the second element',
+        'this is the last element',
+      ];
+      console.log(arr[0]);
+      console.log(arr[1]);
+      console.log(arr[3]);  // 如果指定的索引是一个无效值，JavaScript 数组并不会报错，而是会返回 undefined。
+      console.log(arr[arr.length - 1]);
+
+      // 在 JavaScript 中，以数字开头的属性不能用点号引用，必须用方括号。
+      let years = [1950, 1960, 1970, 1980, 1990, 2000, 2010]
+      // console.log(years.0);
+      console.log(years[0]);
+      console.log(years['2']);
+      console.log(years['02']);  // undefined
+      console.log(years['2'] === years['02'])
+    </script>
+  </body>
+</html>
