@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <meta charset="UTF-8"/>
+    <title>Bubble Sort</title>
+  </head>
+  <body>
+    <script type="text/javascript">
+      /** 改进版冒泡排序 */
+      const bubbleSort = (array) => {
+        let swapped = true;
+        do {
+          swapped = false;
+          for (let j = 0; j < array.length; j++) {
+            if (array[j] > array[j + 1]) {
+              let temp = array[j];
+              array[j] = array[j + 1];
+              array[j + 1] = temp;
+              swapped = true;
+            }
+          }
+        } while (swapped);
+        return array;
+      }
+
+      // 测试
+      const unsortedArray = [9, 3, 2, 11, -6];
+      const sortedArray = bubbleSort(unsortedArray);
+      console.log(sortedArray);
+    </script>
+  </body>
+</html>
