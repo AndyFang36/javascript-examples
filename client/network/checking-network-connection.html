@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8"/>
+    <title>检测网络连接</title>
+  </head>
+  <body>
+    <h1>请断开网络进行测试：</h1>
+    <span id="NetworkStatus"></span>
+    <script type="text/javascript">
+      const networkStatus = document.getElementById("NetworkStatus");
+
+      window.addEventListener("online", () => {
+        networkStatus.style.color = "green";
+        networkStatus.textContent = "网络已连接！";
+      });
+
+      window.addEventListener("offline", () => {
+        networkStatus.style.color = "red";
+        networkStatus.textContent = "网络已断开！";
+      });
+    </script>
+  </body>
+</html>
