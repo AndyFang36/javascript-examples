@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <meta charset="UTF-8"/>
+    <title>FileList对象</title>
+  </head>
+  <body>
+    <label><input type="file" multiple/></label>
+    <ol></ol>
+    <script type="module">
+      import {getDatetime} from "../../utils/getDatetime.js";
+
+      const file = document.getElementsByTagName("input")[0];
+      const ol = document.getElementsByTagName("ol")[0]
+      file.addEventListener("change", function () {
+        console.log(this.files);
+        for (const file of this.files) {
+          const li = document.createElement("li");
+          const text = document.createTextNode(
+            "文件名：" + file.name +
+            ", 文件大小：" + (file.size / 1024 / 1024).toFixed(2) +
+            "MB, 最后修改时间：" + getDatetime(file.lastModified)
+          );
+          li.appendChild(text);
+          ol.appendChild(li);
+        }
+      });
+    </script>
+  </body>
+</html>

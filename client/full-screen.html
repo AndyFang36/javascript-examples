@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <meta charset="UTF-8"/>
+    <title>全屏显示</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        background-color: rgba(149, 236, 149, 0.65);
+      }
+
+      #App {
+        width: 100%;
+      }
+
+      h1 {
+        text-align: center;
+        background-color: deepskyblue;
+      }
+
+      #FullScreenControl {
+        display: flex;
+        justify-content: center;
+      }
+
+      button {
+        margin: 1rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="App">
+      <h1>Hello, JavaScript!</h1>
+      <div id="FullScreenControl">
+        <button id="Full">全屏显示</button>
+        <button id="CancelFull">退出全屏</button>
+        <button id="IsFull">是否全屏</button>
+      </div>
+    </div>
+    <script type="text/javascript">
+      /*
+       * requestFullscreen() 方法用于发出异步请求使元素进入全屏模式。
+       * 调用此API并不能保证元素一定能够进入全屏模式。
+       * 如果元素被允许进入全屏幕模式，返回的Promise会resolve，并且该元素会收到一个fullscreenchange事件，通知它已经进入全屏模式；
+       * 如果全屏请求被拒绝，返回的promise会变成rejected并且该元素会收到一个fullscreenerror事件。
+       * 如果该元素已经从原来的文档中分离，那么该文档将会收到这些事件。
+       */
+      document.getElementById("Full").addEventListener("click", () => {
+        // 返回一个布尔值,表明浏览器是否支持全屏模式.
+        if (document.fullscreenEnabled) {
+          document.documentElement.requestFullscreen();
+        } else {
+          alert("你的浏览器不支持全屏模式!");
+        }
+      });
+
+      /*
+       * document.exitFullscreen() 方法用于让当前文档退出全屏模式。
+       * 调用这个方法会让文档回退到上一个调用Element.requestFullscreen()方法进入全屏模式之前的状态。
+       */
+      document.getElementById("CancelFull").addEventListener("click", () => {
+        if (document.fullscreenElement) {
+          document.exitFullscreen();
+        } else {
+          alert("你的浏览器不支持全屏模式!");
+        }
+      });
+
+      /*
+       * fullscreenElement 属性可以告诉你当前以全屏模式显示的元素 Element 。
+       * 若此项非空，文档处于全屏模式中，否则不在。
+       */
+      document.getElementById("IsFull").addEventListener("click", () => {
+        if (document.fullscreenElement) {
+          alert("你的浏览器支持全屏模式!");
+        } else {
+          alert("你的浏览器不支持全屏模式!");
+        }
+      });
+    </script>
+  </body>
+</html>
