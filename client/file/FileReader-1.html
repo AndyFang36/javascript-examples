@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8"/>
+    <title>FileReader对象读取文本</title>
+  </head>
+  <body>
+    <label><input type="file" multiple></label>
+    <hr/>
+    <output></output>
+    <script type="text/javascript">
+      const
+        file = document.getElementsByTagName("input")[0],
+        output = document.getElementsByTagName("output")[0];
+      file.addEventListener("change", function () {
+        const fileReader = new FileReader();
+        fileReader.readAsText(this.files[0]);
+        fileReader.addEventListener("loadstart", function () {
+          alert("开始读取......");
+        });
+        fileReader.addEventListener("progress", function () {
+          alert("正在读取······");
+        });
+        fileReader.addEventListener("load", function () {
+          alert("读取成功！");
+          output.innerHTML = this.result.toString();
+        });
+        fileReader.addEventListener("loadend", function () {
+          alert("读取完成！");
+        });
+        fileReader.addEventListener("abort",function () {
+          alert("读取中断。");
+        });
+        fileReader.addEventListener("error",function () {
+          alert("读取发生错误！");
+        });
+      });
+    </script>
+  </body>
+</html>
