@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8"/>
+    <title>获取地理位置信息</title>
+  </head>
+  <body>
+    <p>您的位置信息：</p>
+    <p id="Position"></p>
+    <button onclick="getLocation()">获取</button>
+    <script type="text/javascript">
+      const myPosition = document.getElementById("Position");
+
+      const getLocation = () => {
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(showPosition, showError);
+        } else {
+          alert("当前浏览器不支持地理定位！");
+        }
+      };
+
+      const showPosition = (position) => {
+        myPosition.innerHTML =
+          "纬度：" + position.coords.latitude +
+          "，<br/>经度：" + position.coords.longitude +
+          "，<br/>海拔高度（m）："+position.coords.altitude+
+          "，<br/>朝向："+position.coords.heading;
+      };
+
+      const showError = (error) => {
+        switch (error.code) {
+          case error.PERMISSION_DENIED:
+            myPosition.innerText = "用户拒绝地理位置请求！";
+            break;
+          case error.POSITION_UNAVAILABLE:
+            myPosition.innerText = "位置信息不可用！";
+            break;
+          case error.TIMEOUT:
+            myPosition.innerText = "获取用户位置请求超时！";
+            break;
+          case error.UNKNOWN_ERR:
+            myPosition.innerText = "发生了一个不明错误！";
+            break;
+        }
+      };
+    </script>
+  </body>
+</html>
