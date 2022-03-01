@@ -2,9 +2,29 @@
 <html lang="zh">
   <head>
     <meta charset="UTF-8"/>
-    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
+    <title>高德地图API的使用</title>
+    <style>
+      *, *::before, *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      #AMap {
+        width: 50%;
+        height: 50%;
+      }
+    </style>
   </head>
   <body>
-
+    <div id="AMap"></div>
+    <script type="text/javascript">
+      window._AMapSecurityConfig = {
+        serviceHost:'您的代理服务器域名或地址/_AMapService',
+        // 例如 ：serviceHost:'http://1.1.1.1:80/_AMapService',
+      }
+    </script>
+    <script type="text/javascript" src="https://webapi.amap.com/maps?v=2.0&key=6244692d6d61d27fbe596a4f06d0d55d"></script>
   </body>
 </html>

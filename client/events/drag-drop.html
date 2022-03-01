@@ -1,10 +1,121 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh">
   <head>
     <meta charset="UTF-8"/>
     <title>拖拽和释放</title>
+    <style>
+      *, *::before, *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      #App {
+        display: flex;
+        justify-content: center;
+        background-color: lightcyan;
+      }
+
+      .box {
+        position: relative;
+        width: 20ch;
+        height: 20ch;
+        border: thick solid black;
+        border-radius: 0.5rem;
+        margin: 2rem;
+      }
+
+      .box > label {
+        width: 100%;
+        text-align: center;
+        position: absolute;
+        bottom: -2rem;
+      }
+
+      p {
+        border: thin solid black;
+      }
+
+      p:hover {
+        cursor: move;
+      }
+
+      #P1 {
+        background-color: orange;
+      }
+
+      #P2 {
+        background-color: lightgreen;
+      }
+
+      #P3 {
+        background-color: deepskyblue;
+      }
+
+      #P4 {
+        background-color: mediumpurple;
+      }
+    </style>
   </head>
   <body>
+    <div id="App">
+      <div id="Box1" class="box">
+        <label>盒子1</label>
+        <p id="P1" draggable="true">这是段落1。</p>
+        <p id="P2" draggable="true">这是段落2。</p>
+        <p id="P3" draggable="true">这是段落3。</p>
+        <p id="P4" draggable="true">这是段落4。</p>
+      </div>
+      <div id="Box2" class="box">
+        <label>盒子2</label>
+      </div>
+      <div id="Box3" class="box">
+        <label>盒子3</label>
+      </div>
+    </div>
+    <script type="text/javascript">
+      // 拖拽开始
+      document.addEventListener("dragstart", function (event) {
+        console.log(event.target.id + "开始被移动：");
+        event.dataTransfer.setData("text/html", event.target.id);
+      });
 
+      // 处于拖拽过程中
+      document.addEventListener("drag", function (event) {
+        console.log(event.target.id + "正在被移动······");
+      });
+
+      // 源对象进入目标元素
+      document.addEventListener("dragenter", function (event) {
+        console.log(event.target.id + "进入目标元素");
+      });
+
+      // 源对象悬停在目标元素上
+      document.addEventListener("dragover", function (event) {
+        event.preventDefault();
+        console.log("悬停在目标元素 " + event.target.id + " 上");
+      });
+
+      // 源对象离开目标元素
+      document.addEventListener("dragleave", function (event) {
+        console.log("离开了目标元素" + event.target.id);
+      });
+
+      // 在目标元素上释放源对象
+      document.addEventListener("drop", function (event) {
+        console.log("源对象成功释放在" + event.target.id);
+        if (event.target.id.match(/^Box[0-9]$/)) {
+          const id = event.dataTransfer.getData("text/html");
+          event.target.appendChild(document.getElementById(id));
+        } else {
+          alert("段落只能放在盒子中");
+        }
+      });
+
+      // 拖拽结束
+      document.addEventListener("dragend", function (event) {
+        console.log(event.target.id + "拖动完成")
+      });
+    </script>
   </body>
 </html>
